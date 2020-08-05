@@ -1,1 +1,6 @@
-<p>confirm-order works!</p>
+<section>
+    <span>Your name: <strong>{{ selectedOrder?.fullName }}</strong></span>
+    <span>Shipping address: <strong>{{ selectedOrder?.address }}</strong></span>
+    <span>Product: <strong>{{ selectedOrder?.product }}</strong></span>
+    <span>Price: <strong>{{ selectedOrder?.price | currency }}</strong></span>
+</section>

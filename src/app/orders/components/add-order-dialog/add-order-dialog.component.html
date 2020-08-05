@@ -7,12 +7,21 @@
                   (selectOrder)="selectOrderHandler($event)">
 </app-orders-table>
 
-<app-prepare-order *ngIf="selectedStep === 2"></app-prepare-order>
-<app-confirm-order *ngIf="selectedStep === 3"></app-confirm-order>
+<app-prepare-order *ngIf="selectedStep === 2"
+                   [form]="form"
+                   [socks]="socks"
+                   [selectedOrder]="selectedOrder">
+</app-prepare-order>
+
+<app-confirm-order *ngIf="selectedStep === 3"
+                   [selectedOrder]="selectedOrder">
+</app-confirm-order>
 
 <app-dialog-footer [selectedStep]="selectedStep"
                    [orderSelected]="!!selectedOrder"
+                   [disableNextButton]="selectedStep === 2 && !formValid"
                    (cancel)="cancelSelectingHandler()"
                    (nextStep)="nextStepHandler()"
-                   (previousStep)="previousStepHandler()">
+                   (previousStep)="previousStepHandler()"
+                   (confirm)="confirmHandler()">
 </app-dialog-footer>

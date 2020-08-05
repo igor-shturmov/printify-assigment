@@ -1,1 +1,13 @@
-<p>prepare-order works!</p>
+<form [formGroup]="form">
+    <mat-form-field floatLabel="always">
+        <label>Your name</label>
+        <input type="text" matInput formControlName="fullName">
+    </mat-form-field>
+    <mat-form-field floatLabel="always">
+        <label>Shipping address</label>
+        <input type="text" matInput formControlName="address">
+    </mat-form-field>
+    <mat-select formControlName="product" placeholder="Select your product">
+        <mat-option *ngFor="let sock of socks" [value]="sock">{{ sock?.value }}</mat-option>
+    </mat-select>
+</form>

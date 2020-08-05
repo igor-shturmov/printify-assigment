@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 import { BehaviorSubject, Observable } from 'rxjs';
-import { mapTo } from 'rxjs/operators';
 
 import { ordersObjectToArray } from '../utils/mappers';
 
@@ -26,8 +25,10 @@ export class OrdersService {
   }
 
   createOrder(order: IOrder): void {
-    this.http.post(`${this.apiUrl}/orders.json`, order)
-        .pipe(mapTo(this.getOrders()))
-        .subscribe();
+    const data = {
+      [order.id]: order
+    };
+    this.http.patch(`${this.apiUrl}/orders.json`, data)
+        .subscribe(() => this.getOrders());
   }
 }

@@ -15,6 +15,9 @@ import { DialogWizzardComponent } from './components/dialog-wizzard/dialog-wizza
 import { DialogFooterComponent } from './components/dialog-footer/dialog-footer.component';
 import { PrepareOrderComponent } from './components/prepare-order/prepare-order.component';
 import { ConfirmOrderComponent } from './components/confirm-order/confirm-order.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [
@@ -32,7 +35,10 @@ import { ConfirmOrderComponent } from './components/confirm-order/confirm-order.
         HttpClientModule,
         MatTableModule,
         MatDialogModule,
-        MatButtonModule
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatSelectModule
     ],
     providers: [OrdersService],
     entryComponents: [AddOrderDialogComponent]

@@ -1,6 +1,27 @@
 <footer>
-    <button *ngIf="selectedStep !== 1" mat-button color="primary" (click)="previousStep.emit()">Previous</button>
-    <button *ngIf="selectedStep !== 3 && orderSelected" mat-button color="primary" (click)="nextStep.emit()">Next</button>
-    <button *ngIf="selectedStep === 1 && !orderSelected" mat-button color="warn" (click)="cancel.emit()">Cancel</button>
-    <button *ngIf="selectedStep === 3" mat-button color="accent" (click)="confirm.emit()">Confirm and Ship</button>
+    <button *ngIf="selectedStep !== 1"
+            mat-button
+            color="primary"
+            (click)="previousStep.emit()">
+        Previous
+    </button>
+    <button *ngIf="selectedStep !== 3 && orderSelected"
+            mat-button
+            color="primary"
+            [disabled]="disableNextButton"
+            (click)="nextStep.emit()">
+        Next
+    </button>
+    <button *ngIf="selectedStep === 1 && !orderSelected"
+            mat-button
+            color="warn"
+            (click)="cancel.emit()">
+        Cancel
+    </button>
+    <button *ngIf="selectedStep === 3"
+            mat-button
+            color="accent"
+            (click)="confirm.emit()">
+        Confirm and Ship
+    </button>
 </footer>

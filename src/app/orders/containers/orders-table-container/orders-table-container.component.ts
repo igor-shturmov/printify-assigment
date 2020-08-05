@@ -31,7 +31,7 @@ export class OrdersTableContainerComponent implements OnInit {
         // this.ordersService.createOrder(orderMock);
     }
 
-    showAddOrderDialog(orders: IOrders): void {
+    showAddOrderDialogHandler(orders: IOrders): void {
       this.dialog.open<AddOrderDialogComponent, IDialogData>(AddOrderDialogComponent, { data: { orders }, width: '70%' })
           .afterClosed()
           .pipe(take(1), filter(order => !!order))

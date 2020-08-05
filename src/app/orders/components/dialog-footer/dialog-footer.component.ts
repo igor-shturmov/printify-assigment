@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 export class DialogFooterComponent {
   @Input() selectedStep: number;
   @Input() orderSelected: boolean;
+  @Input() disableNextButton: boolean;
 
   @Output() previousStep: EventEmitter<null> = new EventEmitter<null>();
   @Output() nextStep: EventEmitter<null> = new EventEmitter<null>();
