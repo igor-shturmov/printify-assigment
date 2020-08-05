@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.wizard {
+  display: flex;
+  justify-content: center;
+
+  & span {
+    margin: 0 10px;
+
+    &.selected {
+      color: cornflowerblue;
+    }
+  }
+}

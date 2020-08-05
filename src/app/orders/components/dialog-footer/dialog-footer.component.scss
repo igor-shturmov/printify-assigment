@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  margin-top: 25px;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+
+  & button {
+    margin: 0 5px;
+  }
+}

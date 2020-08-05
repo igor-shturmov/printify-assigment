@@ -1,0 +1,33 @@
+<mat-table [dataSource]="orders" class="mat-elevation-z8">
+    <ng-container matColumnDef="fullName">
+        <mat-header-cell *matHeaderCellDef> Full Name</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.fullName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+        <mat-header-cell *matHeaderCellDef> Created</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.created | date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.price | currency}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="product">
+        <mat-header-cell *matHeaderCellDef> Product</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.product}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fulfilment">
+        <mat-header-cell *matHeaderCellDef> Fulfilment</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.fulfilment}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+             [class.highlight]="selectable"
+             [class.selected]="selectedOrder === row"
+             (click)="selectable ? selectOrder.emit(row) : null">
+    </mat-row>
+</mat-table>

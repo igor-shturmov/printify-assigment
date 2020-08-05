@@ -1,0 +1,18 @@
+<app-dialog-wizzard [selectedStep]="selectedStep"></app-dialog-wizzard>
+
+<app-orders-table *ngIf="selectedStep === 1"
+                  [orders]="data?.orders"
+                  [selectedOrder]="selectedOrder"
+                  [selectable]="true"
+                  (selectOrder)="selectOrderHandler($event)">
+</app-orders-table>
+
+<app-prepare-order *ngIf="selectedStep === 2"></app-prepare-order>
+<app-confirm-order *ngIf="selectedStep === 3"></app-confirm-order>
+
+<app-dialog-footer [selectedStep]="selectedStep"
+                   [orderSelected]="!!selectedOrder"
+                   (cancel)="cancelSelectingHandler()"
+                   (nextStep)="nextStepHandler()"
+                   (previousStep)="previousStepHandler()">
+</app-dialog-footer>

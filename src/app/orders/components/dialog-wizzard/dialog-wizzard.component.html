@@ -1,0 +1,6 @@
+<div class="wizard">
+    <span *ngFor="let stepper of steps"
+          [class.selected]="selectedStep === stepper.step">
+        {{ stepper.value }}
+    </span>
+</div>

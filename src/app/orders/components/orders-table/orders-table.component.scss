@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  margin: 0 auto;
+}
+
+mat-row {
+  &.highlight:hover {
+    cursor: pointer;
+  }
+
+  &.selected {
+    border-bottom-color: cornflowerblue;
+  }
+}

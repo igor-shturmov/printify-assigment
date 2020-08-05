@@ -1,0 +1,9 @@
+<ng-container *ngIf="{ orders: orders$ | async } as data">
+    <header>
+        <h1>Orders</h1>
+        <button mat-button color="primary" (click)="showAddOrderDialog(data?.orders)">Import Orders</button>
+    </header>
+    <app-orders-table [orders]="data?.orders"
+                      (importOrders)="showAddOrderDialog($event)">
+    </app-orders-table>
+</ng-container>
