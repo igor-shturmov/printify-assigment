@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { IDialogData } from '../../interfaces/dialog-data';
-import { IOrder } from '../../interfaces/order';
+import { IOrder, IOrders } from '../../interfaces/order';
 
 import { Subscription } from 'rxjs';
 
@@ -21,6 +21,8 @@ export class AddOrderDialogComponent implements OnDestroy {
     selectedOrder: IOrder;
     form: FormGroup;
     formSubscription: Subscription;
+    orders: IOrders;
+
     private alive = true;
 
     readonly socks = SOCKS;
@@ -28,6 +30,7 @@ export class AddOrderDialogComponent implements OnDestroy {
     constructor(private dialogRef: MatDialogRef<AddOrderDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: IDialogData,
                 private fb: FormBuilder) {
+        this.orders = data.orders;
     }
 
     get formValid(): boolean {
@@ -44,6 +47,10 @@ export class AddOrderDialogComponent implements OnDestroy {
 
     nextStepHandler(): void {
         this.selectedStep += 1;
+    }
+
+    findOrdersByNameHandler(value: string): void {
+        this.orders = this.data.orders.filter(order => order.fullName.includes(value));
     }
 
     selectOrderHandler(order: IOrder): void {

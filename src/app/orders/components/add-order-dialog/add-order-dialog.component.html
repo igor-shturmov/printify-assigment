@@ -1,11 +1,19 @@
 <app-dialog-wizzard [selectedStep]="selectedStep"></app-dialog-wizzard>
 
-<app-orders-table *ngIf="selectedStep === 1"
-                  [orders]="data?.orders"
-                  [selectedOrder]="selectedOrder"
-                  [selectable]="true"
-                  (selectOrder)="selectOrderHandler($event)">
-</app-orders-table>
+<div *ngIf="selectedStep === 1"
+     class="table-container">
+    <mat-form-field>
+        <input type="text"
+               matInput
+               placeholder="Find by name"
+               (input)="findOrdersByNameHandler($event?.target?.value)">
+    </mat-form-field>
+    <app-orders-table [orders]="orders"
+                      [selectedOrder]="selectedOrder"
+                      [selectable]="true"
+                      (selectOrder)="selectOrderHandler($event)">
+    </app-orders-table>
+</div>
 
 <app-prepare-order *ngIf="selectedStep === 2"
                    [form]="form"

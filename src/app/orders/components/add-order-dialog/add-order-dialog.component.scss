@@ -2,8 +2,15 @@
   display: block;
 }
 
-app-orders-table {
+.table-container {
+  display: flex;
+  flex-direction: column;
   margin-top: 25px;
+
+  & mat-form-field {
+    max-width: 150px;
+    margin-left: 20%;
+  }
 }
 
 app-prepare-order {
