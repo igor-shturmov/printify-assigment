@@ -1,6 +1,9 @@
 # PrintifyAssigment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.5.
+Simply clone the repository and hope you will like it.
+
+## Pre serve
+Run `npm install` to load all dependency.
 
 ## Development server
 
