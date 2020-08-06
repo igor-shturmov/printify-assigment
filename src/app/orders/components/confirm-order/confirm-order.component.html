@@ -1,6 +1,6 @@
 <section>
-    <span>Your name: <strong>{{ selectedOrder?.fullName }}</strong></span>
-    <span>Shipping address: <strong>{{ selectedOrder?.address }}</strong></span>
-    <span>Product: <strong>{{ selectedOrder?.product }}</strong></span>
-    <span>Price: <strong>{{ selectedOrder?.price | currency }}</strong></span>
+    <span>Your name: <strong id="order-name">{{ selectedOrder?.fullName }}</strong></span>
+    <span>Shipping address: <strong id="order-address">{{ selectedOrder?.address }}</strong></span>
+    <span>Product: <strong id="order-product">{{ selectedOrder?.product }}</strong></span>
+    <span>Price: <strong id="order-price">{{ selectedOrder?.price | currency }}</strong></span>
 </section>
