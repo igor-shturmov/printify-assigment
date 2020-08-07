@@ -11,5 +11,5 @@ import { WIZARD_STEPPERS } from '../../constants/wizzard-steps';
 export class DialogWizzardComponent {
   @Input() selectedStep: number;
 
-  readonly steps = WIZARD_STEPPERS;
+  steps = WIZARD_STEPPERS;
 }

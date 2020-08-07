@@ -73,4 +73,16 @@ describe('OrdersTableComponent', () => {
         expect(component.displayedColumns).toBeTruthy();
         expect(component.displayedColumns.length).toBe(5);
     });
+
+    it('should have select the row and contain the name', () => {
+        component.selectable = true;
+        component.selectedOrder = orders[1];
+        component.orders = orders;
+        fixture.detectChanges();
+
+        const matRows = el.queryAll(By.css('mat-row'));
+
+        expect(matRows[1].nativeElement.textContent).toContain(orders[1].fullName, 'Second row should have name of order');
+        expect(matRows[1].classes.selected).toBe(true, 'Should have selected class');
+    });
 });

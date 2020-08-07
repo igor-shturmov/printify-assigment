@@ -2,12 +2,14 @@
     <button *ngIf="selectedStep !== 1"
             mat-button
             color="primary"
+            class="prev-button"
             (click)="previousStep.emit()">
         Previous
     </button>
     <button *ngIf="selectedStep !== 3 && orderSelected"
             mat-button
             color="primary"
+            class="next-button"
             [disabled]="disableNextButton"
             (click)="nextStep.emit()">
         Next
@@ -15,12 +17,14 @@
     <button *ngIf="selectedStep === 1 && !orderSelected"
             mat-button
             color="warn"
+            class="cancel-button"
             (click)="cancel.emit()">
         Cancel
     </button>
     <button *ngIf="selectedStep === 3"
             mat-button
             color="accent"
+            class="confirm-button"
             (click)="confirm.emit()">
         Confirm and Ship
     </button>
