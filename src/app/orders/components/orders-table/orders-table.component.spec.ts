@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { By } from '@angular/platform-browser';
 
 import { OrdersTableComponent } from './orders-table.component';
 
 import { order, orders } from '../../constants/order-mock';
-import { By } from '@angular/platform-browser';
+
+import { IOrder } from '../../interfaces/order';
 
 describe('OrdersTableComponent', () => {
     let component: OrdersTableComponent;
@@ -84,5 +86,19 @@ describe('OrdersTableComponent', () => {
 
         expect(matRows[1].nativeElement.textContent).toContain(orders[1].fullName, 'Second row should have name of order');
         expect(matRows[1].classes.selected).toBe(true, 'Should have selected class');
+    });
+
+    it('click on mat-row should emit order', () => {
+        let selectedOrder: IOrder;
+        component.selectable = true;
+        component.orders = orders;
+        fixture.detectChanges();
+
+        component.selectOrder.subscribe((orderFromView) => selectedOrder = orderFromView);
+
+        const matRows = el.queryAll(By.css('mat-row'));
+        matRows[1].triggerEventHandler('click', null);
+
+        expect(selectedOrder).toBe(orders[1]);
     });
 });

@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { DialogFooterComponent } from './dialog-footer.component';
-import { By } from '@angular/platform-browser';
 
 describe('DialogFooterComponent', () => {
   let component: DialogFooterComponent;
@@ -88,5 +88,18 @@ describe('DialogFooterComponent', () => {
 
     button = el.query(By.css('.next-button')).nativeElement;
     expect(button.disabled).toBe(true, 'Button still enabled');
+  });
+
+  it('click on next button should fire event but dispatch nothing', () => {
+    component.orderSelected = true;
+    component.selectedStep = 2;
+    fixture.detectChanges();
+    let eventValue;
+
+    component.nextStep.subscribe(value => eventValue = value);
+
+    el.query(By.css('.next-button')).triggerEventHandler('click', null);
+
+    expect(eventValue).toBe(undefined, 'Button dispatch something');
   });
 });
