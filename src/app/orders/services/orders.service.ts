@@ -8,27 +8,31 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ordersObjectToArray } from '../utils/mappers';
 
 import { IOrder, IOrders } from '../interfaces/order';
+import { tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class OrdersService {
-  private readonly apiUrl = environment.apiUrl;
+    private readonly apiUrl = environment.apiUrl;
 
-  private readonly orders: BehaviorSubject<IOrders> = new BehaviorSubject<any>([]);
-  readonly orders$: Observable<IOrders> = this.orders.asObservable();
+    private readonly orders: BehaviorSubject<IOrders> = new BehaviorSubject<any>([]);
+    readonly orders$: Observable<IOrders> = this.orders.asObservable();
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
-  getOrders(): void {
-    this.http.get(`${this.apiUrl}/orders.json`)
-        .pipe(ordersObjectToArray)
-        .subscribe((orders: IOrders) => this.orders.next(orders));
-  }
+    getOrders(): Observable<IOrders> {
+        return this.http.get(`${ this.apiUrl }/orders.json`)
+            .pipe(
+                ordersObjectToArray,
+                tap((orders: IOrders) => this.orders.next(orders))
+            );
+    }
 
-  createOrder(order: IOrder): void {
-    const data = {
-      [order.id]: order
-    };
-    this.http.patch(`${this.apiUrl}/orders.json`, data)
-        .subscribe(() => this.getOrders());
-  }
+    createOrder(order: IOrder): Observable<IOrder> {
+        const data = {
+            [order.id]: order
+        };
+        return this.http.patch<IOrder>(`${ this.apiUrl }/orders.json`, data)
+            .pipe(tap(() => this.getOrders().subscribe()));
+    }
 }

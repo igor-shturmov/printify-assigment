@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://printify-assigment.firebaseio.com/'
+  apiUrl: 'https://printify-assigment.firebaseio.com'
 };
 
 /*

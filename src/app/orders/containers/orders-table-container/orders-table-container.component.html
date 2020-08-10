@@ -3,7 +3,5 @@
         <h1>Orders</h1>
         <button mat-button color="primary" (click)="showAddOrderDialogHandler(data?.orders)">Import Orders</button>
     </header>
-    <app-orders-table [orders]="data?.orders"
-                      (importOrders)="showAddOrderDialogHandler($event)">
-    </app-orders-table>
+    <app-orders-table [orders]="orders$ | async"></app-orders-table>
 </ng-container>

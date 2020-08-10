@@ -8,8 +8,6 @@ import { filter, take } from 'rxjs/operators';
 
 import { AddOrderDialogComponent } from '../../components/add-order-dialog/add-order-dialog.component';
 
-import { order as orderMock } from '../../constants/order-mock';
-
 import { IOrders } from '../../interfaces/order';
 import { IDialogData } from '../../interfaces/dialog-data';
 
@@ -27,15 +25,14 @@ export class OrdersTableContainerComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.ordersService.getOrders();
-        // this.ordersService.createOrder(orderMock);
+        this.ordersService.getOrders().subscribe();
     }
 
     showAddOrderDialogHandler(orders: IOrders): void {
       this.dialog.open<AddOrderDialogComponent, IDialogData>(AddOrderDialogComponent, { data: { orders }, width: '70%' })
           .afterClosed()
           .pipe(take(1), filter(order => !!order))
-          .subscribe(order => this.ordersService.createOrder(order));
+          .subscribe(order => this.ordersService.createOrder(order).subscribe());
     }
 
 }
